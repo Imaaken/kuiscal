@@ -270,9 +270,9 @@ let rec append s1 s2 =
   | [] -> s2
   | c::s1' -> c::(append s1' s2)
 
-(** val beq_string : char list -> char list -> bool **)
+(** val eqb_string : char list -> char list -> bool **)
 
-let beq_string x y =
+let eqb_string x y =
   if string_dec x y then true else false
 
 type 'a total_map = char list -> 'a
@@ -285,7 +285,7 @@ let t_empty v _ =
 (** val t_update : 'a1 total_map -> char list -> 'a1 -> char list -> 'a1 **)
 
 let t_update m x v x' =
-  if beq_string x x' then v else m x'
+  if eqb_string x x' then v else m x'
 
 type state = int total_map
 

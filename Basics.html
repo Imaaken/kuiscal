@@ -116,10 +116,10 @@
 <div class="code code-tight">
 
 <span class="id" type="keyword">Inductive</span> <span class="id" type="var">day</span> : <span class="id" type="keyword">Type</span> :=<br/>
-&nbsp;&nbsp;| <span class="id" type="var">monday</span> <br/>
+&nbsp;&nbsp;| <span class="id" type="var">monday</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">tuesday</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">wednesday</span><br/>
-&nbsp;&nbsp;| <span class="id" type="var">thursday</span> <br/>
+&nbsp;&nbsp;| <span class="id" type="var">thursday</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">friday</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">saturday</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">sunday</span>.<br/>
@@ -127,7 +127,7 @@
 
 <div class="doc">
 The type is called <span class="inlinecode"><span class="id" type="var">day</span></span>, and its members are <span class="inlinecode"><span class="id" type="var">monday</span></span>,
-    <span class="inlinecode"><span class="id" type="var">tuesday</span></span>, etc.  
+    <span class="inlinecode"><span class="id" type="var">tuesday</span></span>, etc. 
 
 <div class="paragraph"> </div>
 
@@ -273,12 +273,31 @@ The details are not important for now (we'll come back to
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">coqc</span>&nbsp;-<span class="id" type="var">Q</span>&nbsp;. <span class="id" type="var">LF</span>&nbsp;<span class="id" type="var">Basics.v</span>&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">coqc</span>&nbsp;-<span class="id" type="var">Q</span>&nbsp;. <span class="id" type="var">LF</span>&nbsp;<span class="id" type="var">Basics.v</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">coqc</span>&nbsp;-<span class="id" type="var">Q</span>&nbsp;. <span class="id" type="var">LF</span>&nbsp;<span class="id" type="var">BasicsTest.v</span>
 <div class="paragraph"> </div>
 
 </div>
     There is no need to hand in <span class="inlinecode"><span class="id" type="var">BasicsTest.v</span></span> itself (or <span class="inlinecode"><span class="id" type="var">Preface.v</span></span>).
+
+<div class="paragraph"> </div>
+
+    <i>If your class is using the Canvas system to hand in assignments</i>:
+
+<div class="paragraph"> </div>
+
+<ul class="doclist">
+<li> If you submit multiple versions of the assignment, you may
+        notice that they are given different names.  This is fine: The
+        most recent submission is the one that will be graded.
+
+</li>
+<li> To hand in multiple files at the same time (if more than one
+        chapter is assigned in the same week), you need to make a
+        single submission with all the files at once using the button
+        "Add another file" just above the comment box. 
+</li>
+</ul>
 
 </div>
 
@@ -293,7 +312,7 @@ The details are not important for now (we'll come back to
 <div class="code code-tight">
 
 <span class="id" type="keyword">Inductive</span> <span class="id" type="var">bool</span> : <span class="id" type="keyword">Type</span> :=<br/>
-&nbsp;&nbsp;| <span class="id" type="var">true</span> <br/>
+&nbsp;&nbsp;| <span class="id" type="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">false</span>.<br/>
 </div>
 
@@ -533,14 +552,15 @@ Let's look at this in a little more detail.
 &nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">c</span> <span class="id" type="keyword">with</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">black</span> ⇒ <span class="id" type="var">true</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">white</span> ⇒ <span class="id" type="var">true</span><br/>
-&nbsp;&nbsp;| <span class="id" type="var">primary</span> <span class="id" type="var">p</span> ⇒ <span class="id" type="var">false</span><br/>
+&nbsp;&nbsp;| <span class="id" type="var">primary</span> <span class="id" type="var">q</span> ⇒ <span class="id" type="var">false</span><br/>
 &nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
 </div>
 
 <div class="doc">
 Since the <span class="inlinecode"><span class="id" type="var">primary</span></span> constructor takes an argument, a pattern
-    matching <span class="inlinecode"><span class="id" type="var">primary</span></span> should include either a variable (as above) or
-    a constant of appropriate type (as below). 
+    matching <span class="inlinecode"><span class="id" type="var">primary</span></span> should include either a variable (as above &mdash;
+    note that we can choose its name freely) or a constant of
+    appropriate type (as below). 
 </div>
 <div class="code code-tight">
 
@@ -661,13 +681,13 @@ The <span class="inlinecode"><span class="id" type="var">bits</span></span> cons
     two constructors. The capital-letter <span class="inlinecode"><span class="id" type="var">O</span></span> constructor represents zero.
     When the <span class="inlinecode"><span class="id" type="var">S</span></span> constructor is applied to the representation of the
     natural number <i>n</i>, the result is the representation of <i>n+1</i>.
-    (<span class="inlinecode"><span class="id" type="var">S</span></span> stands for "successor", or "scratch" if one is in prison.) 
+    (<span class="inlinecode"><span class="id" type="var">S</span></span> stands for "successor", or "scratch" if one is in prison.)
     Here is the complete datatype definition. 
 </div>
 <div class="code code-tight">
 
 <span class="id" type="keyword">Inductive</span> <span class="id" type="var">nat</span> : <span class="id" type="keyword">Type</span> :=<br/>
-&nbsp;&nbsp;| <span class="id" type="var">O</span> <br/>
+&nbsp;&nbsp;| <span class="id" type="var">O</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">S</span> (<span class="id" type="var">n</span> : <span class="id" type="var">nat</span>).<br/>
 </div>
 
@@ -1553,7 +1573,7 @@ Before closing the chapter, let's mention one final
 <div class="paragraph"> </div>
 
 <div class="code code-tight">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span>&nbsp;<span class="id" type="var">x</span>&nbsp;<span class="id" type="var">y</span>. <span class="id" type="tactic">destruct</span>&nbsp;<span class="id" type="var">y</span>&nbsp;<span class="id" type="keyword">as</span>&nbsp;[|<span class="id" type="var">y</span>].
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span>&nbsp;<span class="id" type="var">x</span>&nbsp;<span class="id" type="var">y</span>. <span class="id" type="tactic">destruct</span>&nbsp;<span class="id" type="var">y</span>&nbsp;<span class="id" type="keyword">as</span>&nbsp;[|<span class="id" type="var">y</span>]&nbsp;<span class="id" type="var">eqn</span>:<span class="id" type="var">E</span>.
 <div class="paragraph"> </div>
 
 </div>
@@ -1743,7 +1763,7 @@ When Coq checks this definition, it notes that <span class="inlinecode"><span cl
     sure you didn't miss anything. 
 <div class="paragraph"> </div>
 
-<a name="lab42"></a><h4 class="section">Exercise: 2 stars (boolean_functions)</h4>
+<a name="lab42"></a><h4 class="section">Exercise: 1 star (indentity_fn_applied_twice)</h4>
  Use the tactics you have learned so far to prove the following
     theorem about boolean functions. 
 </div>
@@ -1757,8 +1777,12 @@ When Coq checks this definition, it notes that <span class="inlinecode"><span cl
 &nbsp;&nbsp;<span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span> <span class="id" type="var">Admitted</span>.<br/>
 </div>
 
-<div class="doc">
-Now state and prove a theorem <span class="inlinecode"><span class="id" type="var">negation_fn_applied_twice</span></span> similar
+<span class="proofbox">&#9744;</span> 
+<div class="doc less-space">
+<div class="paragraph"> </div>
+
+<a name="lab43"></a><h4 class="section">Exercise: 1 star (negation_fn_applied_twice)</h4>
+ Now state and prove a theorem <span class="inlinecode"><span class="id" type="var">negation_fn_applied_twice</span></span> similar
     to the previous one but where the second hypothesis says that the
     function <span class="inlinecode"><span class="id" type="var">f</span></span> has the property that <span class="inlinecode"><span class="id" type="var">f</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">negb</span></span> <span class="inlinecode"><span class="id" type="var">x</span></span>.
 </div>
@@ -1771,14 +1795,14 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 &nbsp;&nbsp;&nbsp;strings&nbsp;for&nbsp;the&nbsp;grader&nbsp;comments.&nbsp;*)</span><br/>
 <span class="id" type="var">From</span> <span class="id" type="var">Coq</span> <span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <span class="id" type="var">String</span>.<br/><hr class='doublespaceincode'/>
 <span class="comment">(*&nbsp;Do&nbsp;not&nbsp;modify&nbsp;the&nbsp;following&nbsp;line:&nbsp;*)</span><br/>
-<span class="id" type="keyword">Definition</span> <span class="id" type="var">manual_grade_for_negation_fn_applied_twice</span> : <span class="id" type="var">option</span> (<span class="id" type="var">prod</span> <span class="id" type="var">nat</span> <span class="id" type="var">string</span>) := <span class="id" type="var">None</span>.<br/>
+<span class="id" type="keyword">Definition</span> <span class="id" type="var">manual_grade_for_negation_fn_applied_twice</span> : <span class="id" type="var">option</span> (<span class="id" type="var">nat</span>*<span class="id" type="var">string</span>) := <span class="id" type="var">None</span>.<br/>
 </div>
 
 <span class="proofbox">&#9744;</span> 
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab43"></a><h4 class="section">Exercise: 3 stars, optional (andb_eq_orb)</h4>
+<a name="lab44"></a><h4 class="section">Exercise: 3 stars, optional (andb_eq_orb)</h4>
  Prove the following theorem.  (Hint: This one can be a bit tricky,
     depending on how you approach it.  You will probably need both
     <span class="inlinecode"><span class="id" type="tactic">destruct</span></span> and <span class="inlinecode"><span class="id" type="tactic">rewrite</span></span>, but destructing everything in sight is
@@ -1798,7 +1822,7 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 <div class="doc less-space">
 <div class="paragraph"> </div>
 
-<a name="lab44"></a><h4 class="section">Exercise: 3 stars (binary)</h4>
+<a name="lab45"></a><h4 class="section">Exercise: 3 stars (binary)</h4>
  We can generalize our unary representation of natural numbers to
     the more efficient binary representation by treating a binary
     number as a sequence of constructors <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">B</span></span> (representing 0s
@@ -1833,7 +1857,7 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 <div class="code code-tight">
 
 <span class="id" type="keyword">Inductive</span> <span class="id" type="var">bin</span> : <span class="id" type="keyword">Type</span> :=<br/>
-&nbsp;&nbsp;| <span class="id" type="var">Z</span> <br/>
+&nbsp;&nbsp;| <span class="id" type="var">Z</span><br/>
 &nbsp;&nbsp;| <span class="id" type="var">A</span> (<span class="id" type="var">n</span> : <span class="id" type="var">bin</span>)<br/>
 &nbsp;&nbsp;| <span class="id" type="var">B</span> (<span class="id" type="var">n</span> : <span class="id" type="var">bin</span>).<br/>
 </div>
@@ -1847,7 +1871,7 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 
 <span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">incr</span> (<span class="id" type="var">m</span>:<span class="id" type="var">bin</span>) : <span class="id" type="var">bin</span><br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;REPLACE&nbsp;THIS&nbsp;LINE&nbsp;WITH&nbsp;":=&nbsp;_your_definition_&nbsp;."&nbsp;*)</span>. <span class="id" type="var">Admitted</span>.<br/><hr class='doublespaceincode'/>
-<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">bin_to_nat</span> (<span class="id" type="var">m</span>:<span class="id" type="var">bin</span>) : <span class="id" type="var">nat</span> <br/>
+<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">bin_to_nat</span> (<span class="id" type="var">m</span>:<span class="id" type="var">bin</span>) : <span class="id" type="var">nat</span><br/>
 &nbsp;&nbsp;<span class="comment">(*&nbsp;REPLACE&nbsp;THIS&nbsp;LINE&nbsp;WITH&nbsp;":=&nbsp;_your_definition_&nbsp;."&nbsp;*)</span>. <span class="id" type="var">Admitted</span>.<br/>
 </div>
 
@@ -1864,10 +1888,21 @@ Now state and prove a theorem <span class="inlinecode"><span class="id" type="va
 
 <span class="comment">(*&nbsp;FILL&nbsp;IN&nbsp;HERE&nbsp;*)</span><br/><hr class='doublespaceincode'/>
 <span class="comment">(*&nbsp;Do&nbsp;not&nbsp;modify&nbsp;the&nbsp;following&nbsp;line:&nbsp;*)</span><br/>
-<span class="id" type="keyword">Definition</span> <span class="id" type="var">manual_grade_for_binary</span> : <span class="id" type="var">option</span> (<span class="id" type="var">prod</span> <span class="id" type="var">nat</span> <span class="id" type="var">string</span>) := <span class="id" type="var">None</span>.<br/>
+<span class="id" type="keyword">Definition</span> <span class="id" type="var">manual_grade_for_binary</span> : <span class="id" type="var">option</span> (<span class="id" type="var">nat</span>*<span class="id" type="var">string</span>) := <span class="id" type="var">None</span>.<br/>
 </div>
 
 <span class="proofbox">&#9744;</span> 
+<div class="doc less-space">
+<div class="paragraph"> </div>
+
+ NEW NAME: The next line is a temporary hack to allow
+    <span class="inlinecode"><span class="id" type="var">zero_nbeq_plus_1</span></span> to be used as a synonym for the "more
+    up-to-date" (i.e., consistent with the Coq library) name
+    <span class="inlinecode"><span class="id" type="var">zero_neqb_plus_1</span></span>... 
+</div>
+<div class="code code-tight">
+<span class="id" type="keyword">Notation</span> <span class="id" type="var">zero_neqb_plus_1</span> := <span class="id" type="var">zero_nbeq_plus_1</span> (<span class="id" type="var">only</span> <span class="id" type="var">parsing</span>).<br/>
+</div>
 </div>
 
 

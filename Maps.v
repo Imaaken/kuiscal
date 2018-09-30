@@ -45,13 +45,15 @@ Import ListNotations.
 (** * Identifiers *)
 
 (** First, we need a type for the keys that we use to index into our
-    maps.  For this purpose, we will simply use plain [string]s. *)
+    maps.  In [Lists.v] we introduced a fresh type [id] for this
+    purpose; for the rest of _Software Foundations_ we will use the
+    [string] type from Coq's standard library. *)
 
-(** To compare strings, we define the function [beq_string], which
-    internally uses the function [string_dec] from Coq's string library.
-    We then establish its fundamental properties. *)
+(** To compare strings, we define the function [eqb_string], which
+    internally uses the function [string_dec] from Coq's string
+    library. *)
 
-Definition beq_string x y :=
+Definition eqb_string x y :=
   if string_dec x y then true else false.
 
 (** (The function [string_dec] comes from Coq's string library.
@@ -64,42 +66,43 @@ Definition beq_string x y :=
     which.  But for present purposes you can think of it as just a
     fancy [bool].) *)
 
-Theorem beq_string_refl : forall s, true = beq_string s s.
-Proof. intros s. unfold beq_string. destruct (string_dec s s) as [|Hs].
+(** Now we need a few basic properties of string equality... *)
+Theorem eqb_string_refl : forall s, true = eqb_string s s.
+Proof. intros s. unfold eqb_string. destruct (string_dec s s) as [|Hs].
   - reflexivity.
   - destruct Hs. reflexivity.
 Qed.
 
-(** The following useful property of [beq_string] follows from an
-    analogous lemma about strings: *)
+(** The following useful property follows from an analogous
+    lemma about strings: *)
 
-Theorem beq_string_true_iff : forall x y : string,
-  beq_string x y = true <-> x = y.
+Theorem eqb_string_true_iff : forall x y : string,
+  eqb_string x y = true <-> x = y.
 Proof.
    intros x y.
-   unfold beq_string.
+   unfold eqb_string.
    destruct (string_dec x y) as [|Hs].
    - subst. split. reflexivity. reflexivity.
    - split.
-     + intros contra. discriminate contra. 
+     + intros contra. discriminate contra.
      + intros H. rewrite H in Hs. destruct Hs. reflexivity.
 Qed.
 
 (** Similarly: *)
 
-Theorem beq_string_false_iff : forall x y : string,
-  beq_string x y = false
+Theorem eqb_string_false_iff : forall x y : string,
+  eqb_string x y = false
   <-> x <> y.
 Proof.
-  intros x y. rewrite <- beq_string_true_iff.
+  intros x y. rewrite <- eqb_string_true_iff.
   rewrite not_true_iff_false. reflexivity. Qed.
 
-(** This useful variant follows just by rewriting: *)
+(** This handy variant follows just by rewriting: *)
 
-Theorem false_beq_string : forall x y : string,
-   x <> y -> beq_string x y = false.
+Theorem false_eqb_string : forall x y : string,
+   x <> y -> eqb_string x y = false.
 Proof.
-  intros x y. rewrite beq_string_false_iff.
+  intros x y. rewrite eqb_string_false_iff.
   intros H. apply H. Qed.
 
 (* ################################################################# *)
@@ -139,7 +142,7 @@ Definition t_empty {A:Type} (v : A) : total_map A :=
 
 Definition t_update {A:Type} (m : total_map A)
                     (x : string) (v : A) :=
-  fun x' => if beq_string x x' then v else m x'.
+  fun x' => if eqb_string x x' then v else m x'.
 
 (** This definition is a nice example of higher-order programming:
     [t_update] takes a _function_ [m] and yields a new function
@@ -258,25 +261,25 @@ Proof.
 (** For the final two lemmas about total maps, it's convenient to use
     the reflection idioms introduced in chapter [IndProp].  We begin
     by proving a fundamental _reflection lemma_ relating the equality
-    proposition on [id]s with the boolean function [beq_id]. *)
+    proposition on [id]s with the boolean function [eqb_id]. *)
 
-(** **** Exercise: 2 stars, optional (beq_stringP)  *)
+(** **** Exercise: 2 stars, optional (eqb_stringP)  *)
 (** Use the proof of [eqbP] in chapter [IndProp] as a template to
     prove the following: *)
 
-Lemma beq_stringP : forall x y, reflect (x = y) (beq_string x y).
+Lemma eqb_stringP : forall x y, reflect (x = y) (eqb_string x y).
 Proof.
   (* FILL IN HERE *) Admitted.
 (** [] *)
 
-(** Now, given [string]s [x1] and [x2], we can use the [destruct (beq_stringP
+(** Now, given [string]s [x1] and [x2], we can use the [destruct (eqb_stringP
     x1 x2)] to simultaneously perform case analysis on the result of
-    [beq_string x1 x2] and generate hypotheses about the equality (in the
+    [eqb_string x1 x2] and generate hypotheses about the equality (in the
     sense of [=]) of [x1] and [x2]. *)
 
 (** **** Exercise: 2 stars (t_update_same)  *)
 (** With the example in chapter [IndProp] as a template, use
-    [beq_stringP] to prove the following theorem, which states that if we
+    [eqb_stringP] to prove the following theorem, which states that if we
     update a map to assign key [x] the same value as it already has in
     [m], then the result is equal to [m]: *)
 
@@ -287,7 +290,7 @@ Theorem t_update_same : forall X x (m : total_map X),
 (** [] *)
 
 (** **** Exercise: 3 stars, recommended (t_update_permute)  *)
-(** Use [beq_stringP] to prove one final property of the [update]
+(** Use [eqb_stringP] to prove one final property of the [update]
     function: If we update a map [m] at two distinct keys, it doesn't
     matter in which order we do the updates. *)
 
@@ -350,7 +353,7 @@ Qed.
 
 Theorem update_neq : forall (X:Type) v x1 x2
                        (m : partial_map X),
-  x2 <> x1 ->
+  x2 <> x1 -> 
   (m & {{ x2 --> v }}) x1 = m x1.
 Proof.
   intros X v x1 x2 m H.

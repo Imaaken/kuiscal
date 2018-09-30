@@ -27,7 +27,7 @@ From LF Require Export Lists.
     for example... *)
 
 Inductive boollist : Type :=
-  | bool_nil 
+  | bool_nil
   | bool_cons (b : bool) (l : boollist).
 
 (** ... but this would quickly become tedious, partly because we
@@ -63,11 +63,12 @@ Inductive list (X:Type) : Type :=
 Check list.
 (* ===> list : Type -> Type *)
 
-(** The parameter [X] in the definition of [list] becomes a parameter
-    to the constructors [nil] and [cons] -- that is, [nil] and [cons]
-    are now polymorphic constructors, that need to be supplied with
-    the type of the list they are building. As an example, [nil nat]
-    constructs the empty list of type [nat]. *)
+(** The parameter [X] in the definition of [list] automatically
+    becomes a parameter to the constructors [nil] and [cons] -- that
+    is, [nil] and [cons] are now polymorphic constructors; when we use
+    them, we must now provide a first argument that is the type of the
+    list they are building. For example, [nil nat] constructs the
+    empty list of type [nat]. *)
 
 Check (nil nat).
 (* ===> nil nat : list nat *)
@@ -146,7 +147,7 @@ Proof. reflexivity.  Qed.
 Module MumbleGrumble.
 
 Inductive mumble : Type :=
-  | a 
+  | a
   | b (x : mumble) (y : nat)
   | c.
 
@@ -155,7 +156,7 @@ Inductive grumble (X:Type) : Type :=
   | e (x : X).
 
 (** Which of the following are well-typed elements of [grumble X] for
-    some type [X]?
+    some type [X]?  (Add YES or NO to each line.)
       - [d (b a 5)]
       - [d mumble (b a 5)]
       - [d bool (b a 5)]
@@ -167,7 +168,7 @@ Inductive grumble (X:Type) : Type :=
 End MumbleGrumble.
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_mumble_grumble : option (prod nat string) := None.
+Definition manual_grade_for_mumble_grumble : option (nat*string) := None.
 (** [] *)
 
 (* ----------------------------------------------------------------- *)
@@ -218,14 +219,13 @@ Check repeat.
     explicitly?
 
     Fortunately, Coq permits us to avoid this kind of redundancy.  In
-    place of any type argument we can write the "implicit argument"
-    [_], which can be read as "Please try to figure out for yourself
-    what belongs here."  More precisely, when Coq encounters a [_], it
-    will attempt to _unify_ all locally available information -- the
-    type of the function being applied, the types of the other
-    arguments, and the type expected by the context in which the
-    application appears -- to determine what concrete type should
-    replace the [_].
+    place of any type argument we can write a "hole" [_], which can be
+    read as "Please try to figure out for yourself what belongs here."
+    More precisely, when Coq encounters a [_], it will attempt to
+    _unify_ all locally available information -- the type of the
+    function being applied, the types of the other arguments, and the
+    type expected by the context in which the application appears --
+    to determine what concrete type should replace the [_].
 
     This may sound similar to type annotation inference -- indeed, the
     two procedures rely on the same underlying mechanisms.  Instead of
@@ -239,8 +239,7 @@ Check repeat.
 
     to tell Coq to attempt to infer the missing information.
 
-    Using implicit arguments, the [repeat] function can be written like
-    this: *)
+    Using holes, the [repeat] function can be written like this: *)
 
 Fixpoint repeat'' X x count : list X :=
   match count with
@@ -257,7 +256,7 @@ Fixpoint repeat'' X x count : list X :=
 Definition list123 :=
   cons nat 1 (cons nat 2 (cons nat 3 (nil nat))).
 
-(** ...we can use argument synthesis to write this: *)
+(** ...we can use holes to write this: *)
 
 Definition list123' :=
   cons _ 1 (cons _ 2 (cons _ 3 (nil _))).
@@ -307,7 +306,7 @@ Fixpoint repeat''' {X : Type} (x : X) (count : nat) : list X :=
     type: *)
 
 Inductive list' {X:Type} : Type :=
-  | nil' 
+  | nil'
   | cons' (x : X) (l : list').
 
 (** Because [X] is declared as implicit for the _entire_ inductive
@@ -532,7 +531,7 @@ Proof.
 Module OptionPlayground.
 
 Inductive option (X:Type) : Type :=
-  | Some (x : X) 
+  | Some (x : X)
   | None.
 
 Arguments Some {X} _.
@@ -798,9 +797,8 @@ Example test_flat_map1:
  (* FILL IN HERE *) Admitted.
 (** [] *)
 
-(** Lists are not the only inductive type that we can write a
-    [map] function for.  Here is the definition of [map] for the
-    [option] type: *)
+(** Lists are not the only inductive type for which [map] makes sense.
+    Here is a [map] for the [option] type: *)
 
 Definition option_map {X Y : Type} (f : X -> Y) (xo : option X)
                       : option Y :=
@@ -875,7 +873,7 @@ Proof. reflexivity. Qed.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_fold_types_different : option (prod nat string) := None.
+Definition manual_grade_for_fold_types_different : option (nat*string) := None.
 (** [] *)
 
 (* ================================================================= *)
@@ -962,7 +960,7 @@ Definition fold_map {X Y: Type} (f: X -> Y) (l: list X) : list Y
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_fold_map : option (prod nat string) := None.
+Definition manual_grade_for_fold_map : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 2 stars, advanced (currying)  *)
@@ -1033,35 +1031,34 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_informal_proof : option (prod nat string) := None.
+Definition manual_grade_for_informal_proof : option (nat*string) := None.
 (** [] *)
 
-(** **** Exercise: 4 stars, advanced (church_numerals)  *)
-(** This exercise explores an alternative way of defining natural
-    numbers, using the so-called _Church numerals_, named after
-    mathematician Alonzo Church.  We can represent a natural number
-    [n] as a function that takes a function [f] as a parameter and
-    returns [f] iterated [n] times. *)
+(** The following exercises explore an alternative way of defining
+    natural numbers, using the so-called _Church numerals_, named
+    after mathematician Alonzo Church.  We can represent a natural
+    number [n] as a function that takes a function [f] as a parameter
+    and returns [f] iterated [n] times. *)
 
 Module Church.
-Definition nat := forall X : Type, (X -> X) -> X -> X.
+Definition cnat := forall X : Type, (X -> X) -> X -> X.
 
 (** Let's see how to write some numbers with this notation. Iterating
     a function once should be the same as just applying it.  Thus: *)
 
-Definition one : nat :=
+Definition one : cnat :=
   fun (X : Type) (f : X -> X) (x : X) => f x.
 
 (** Similarly, [two] should apply [f] twice to its argument: *)
 
-Definition two : nat :=
+Definition two : cnat :=
   fun (X : Type) (f : X -> X) (x : X) => f (f x).
 
 (** Defining [zero] is somewhat trickier: how can we "apply a function
     zero times"?  The answer is actually simple: just return the
     argument untouched. *)
 
-Definition zero : nat :=
+Definition zero : cnat :=
   fun (X : Type) (f : X -> X) (x : X) => x.
 
 (** More generally, a number [n] can be written as [fun X f x => f (f
@@ -1069,15 +1066,18 @@ Definition zero : nat :=
     particular how the [doit3times] function we've defined previously
     is actually just the Church representation of [3]. *)
 
-Definition three : nat := @doit3times.
+Definition three : cnat := @doit3times.
 
 (** Complete the definitions of the following functions. Make sure
     that the corresponding unit tests pass by proving them with
     [reflexivity]. *)
 
-(** Successor of a natural number: *)
+(** **** Exercise: 1 star, advanced (church_succ)  *)
 
-Definition succ (n : nat) : nat
+(** Successor of a natural number: given a Church numeral [n],
+    the successor [succ n] is a function that iterates its
+    argument once more than [n]. *)
+Definition succ (n : cnat) : cnat
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
 Example succ_1 : succ zero = one.
@@ -1089,9 +1089,12 @@ Proof. (* FILL IN HERE *) Admitted.
 Example succ_3 : succ two = three.
 Proof. (* FILL IN HERE *) Admitted.
 
-(** Addition of two natural numbers: *)
+(** [] *)
 
-Definition plus (n m : nat) : nat
+(** **** Exercise: 1 star, advanced (church_plus)  *)
+
+(** Addition of two natural numbers: *)
+Definition plus (n m : cnat) : cnat
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
 Example plus_1 : plus zero one = one.
@@ -1104,9 +1107,12 @@ Example plus_3 :
   plus (plus two two) three = plus one (plus three three).
 Proof. (* FILL IN HERE *) Admitted.
 
-(** Multiplication: *)
+(** [] *)
 
-Definition mult (n m : nat) : nat
+(** **** Exercise: 2 stars, advanced (church_mult)  *)
+
+(** Multiplication: *)
+Definition mult (n m : cnat) : cnat
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
 Example mult_1 : mult one one = one.
@@ -1118,30 +1124,32 @@ Proof. (* FILL IN HERE *) Admitted.
 Example mult_3 : mult two three = plus three three.
 Proof. (* FILL IN HERE *) Admitted.
 
+(** [] *)
+
+(** **** Exercise: 2 stars, advanced (church_exp)  *)
+
 (** Exponentiation: *)
 
 (** (_Hint_: Polymorphism plays a crucial role here.  However,
     choosing the right type to iterate over can be tricky.  If you hit
     a "Universe inconsistency" error, try iterating over a different
-    type: [nat] itself is usually problematic.) *)
+    type.  Iterating over [cnat] itself is usually problematic.) *)
 
-Definition exp (n m : nat) : nat
+Definition exp (n m : cnat) : cnat
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
 Example exp_1 : exp two two = plus two two.
 Proof. (* FILL IN HERE *) Admitted.
 
-Example exp_2 : exp three two = plus (mult two (mult two two)) one.
+Example exp_2 : exp three zero = one.
 Proof. (* FILL IN HERE *) Admitted.
 
-Example exp_3 : exp three zero = one.
+Example exp_3 : exp three two = plus (mult two (mult two two)) one.
 Proof. (* FILL IN HERE *) Admitted.
+
+(** [] *)
 
 End Church.
-
-(* Do not modify the following line: *)
-Definition manual_grade_for_succ_plus_mult_exp : option (prod nat string) := None.
-(** [] *)
 
 End Exercises.
 

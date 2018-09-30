@@ -69,16 +69,16 @@
     we are defining a new set of data values -- a _type_. *)
 
 Inductive day : Type :=
-  | monday 
+  | monday
   | tuesday
   | wednesday
-  | thursday 
+  | thursday
   | friday
   | saturday
   | sunday.
 
 (** The type is called [day], and its members are [monday],
-    [tuesday], etc.  
+    [tuesday], etc. 
 
     Having defined [day], we can write functions that operate on
     days. *)
@@ -184,11 +184,19 @@ Proof. simpl. reflexivity.  Qed.
     terminal window either type [make BasicsTest.vo] or do the
     following:
 
-       coqc -Q . LF Basics.v 
+       coqc -Q . LF Basics.v
        coqc -Q . LF BasicsTest.v
 
     There is no need to hand in [BasicsTest.v] itself (or [Preface.v]).
-*)
+
+    _If your class is using the Canvas system to hand in assignments_:
+      - If you submit multiple versions of the assignment, you may
+        notice that they are given different names.  This is fine: The
+        most recent submission is the one that will be graded.
+      - To hand in multiple files at the same time (if more than one
+        chapter is assigned in the same week), you need to make a
+        single submission with all the files at once using the button
+        "Add another file" just above the comment box. *)
 
 (* ================================================================= *)
 (** ** Booleans *)
@@ -197,7 +205,7 @@ Proof. simpl. reflexivity.  Qed.
     booleans, with members [true] and [false]. *)
 
 Inductive bool : Type :=
-  | true 
+  | true
   | false.
 
 (** Although we are rolling our own booleans here for the sake
@@ -377,12 +385,13 @@ Definition monochrome (c : color) : bool :=
   match c with
   | black => true
   | white => true
-  | primary p => false
+  | primary q => false
   end.
 
 (** Since the [primary] constructor takes an argument, a pattern
-    matching [primary] should include either a variable (as above) or
-    a constant of appropriate type (as below). *)
+    matching [primary] should include either a variable (as above --
+    note that we can choose its name freely) or a constant of
+    appropriate type (as below). *)
 
 Definition isred (c : color) : bool :=
   match c with
@@ -482,11 +491,11 @@ Module NatPlayground.
     two constructors. The capital-letter [O] constructor represents zero.
     When the [S] constructor is applied to the representation of the
     natural number _n_, the result is the representation of _n+1_.
-    ([S] stands for "successor", or "scratch" if one is in prison.) 
+    ([S] stands for "successor", or "scratch" if one is in prison.)
     Here is the complete datatype definition. *)
 
 Inductive nat : Type :=
-  | O 
+  | O
   | S (n : nat).
 
 (** With this definition, 0 is represented by [O], 1 by [S O],
@@ -1164,7 +1173,7 @@ Qed.
     convenience.  As you may have noticed, many proofs perform case
     analysis on a variable right after introducing it:
 
-       intros x y. destruct y as [|y].
+       intros x y. destruct y as [|y] eqn:E.
 
     This pattern is so common that Coq provides a shorthand for it: we
     can perform case analysis on a variable when introducing it by
@@ -1302,7 +1311,7 @@ Fixpoint plus' (n : nat) (m : nat) : nat :=
     [make BasicsTest.vo] in a terminal and check its output to make
     sure you didn't miss anything. *)
 
-(** **** Exercise: 2 stars (boolean_functions)  *)
+(** **** Exercise: 1 star (indentity_fn_applied_twice)  *)
 (** Use the tactics you have learned so far to prove the following
     theorem about boolean functions. *)
 
@@ -1313,6 +1322,9 @@ Theorem identity_fn_applied_twice :
 Proof.
   (* FILL IN HERE *) Admitted.
 
+(** [] *)
+
+(** **** Exercise: 1 star (negation_fn_applied_twice)  *)
 (** Now state and prove a theorem [negation_fn_applied_twice] similar
     to the previous one but where the second hypothesis says that the
     function [f] has the property that [f x = negb x].*)
@@ -1325,7 +1337,7 @@ Proof.
 From Coq Require Export String.
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_negation_fn_applied_twice : option (prod nat string) := None.
+Definition manual_grade_for_negation_fn_applied_twice : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (andb_eq_orb)  *)
@@ -1369,7 +1381,7 @@ Proof.
     usually written.  This choice makes them easier to manipulate. *)
 
 Inductive bin : Type :=
-  | Z 
+  | Z
   | A (n : bin)
   | B (n : bin).
 
@@ -1380,7 +1392,7 @@ Inductive bin : Type :=
 Fixpoint incr (m:bin) : bin
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
-Fixpoint bin_to_nat (m:bin) : nat 
+Fixpoint bin_to_nat (m:bin) : nat
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
 (**    (b) Write five unit tests [test_bin_incr1], [test_bin_incr2], etc.
@@ -1394,6 +1406,12 @@ Fixpoint bin_to_nat (m:bin) : nat
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_binary : option (prod nat string) := None.
+Definition manual_grade_for_binary : option (nat*string) := None.
 (** [] *)
+
+(** NEW NAME: The next line is a temporary hack to allow
+    [zero_nbeq_plus_1] to be used as a synonym for the "more
+    up-to-date" (i.e., consistent with the Coq library) name
+    [zero_neqb_plus_1]... *)
+Notation zero_neqb_plus_1 := zero_nbeq_plus_1 (only parsing).
 

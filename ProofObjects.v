@@ -142,7 +142,7 @@ Qed.
 
 (** At any given moment, Coq has constructed a term with a
     "hole" (indicated by [?Goal] here, and so on), and it knows what
-    type of evidence is needed to fill this hole.  
+    type of evidence is needed to fill this hole. 
 
     Each hole corresponds to a subgoal, and the proof is
     finished when there are no more subgoals.  At this point, the
@@ -177,7 +177,7 @@ Theorem ev_8 : ev 8.
 Proof.
   (* FILL IN HERE *) Admitted.
 
-Definition ev_8' : ev 8 
+Definition ev_8' : ev 8
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 (** [] *)
 
@@ -225,7 +225,7 @@ Definition ev_plus4'' (n : nat) (H : ev n)
   ev_SS (S (S n)) (ev_SS n H).
 
 Check ev_plus4''.
-(* ===> 
+(* ===>
      : forall n : nat, ev n -> ev (4 + n) *)
 
 (** When we view the proposition being proved by [ev_plus4] as a
@@ -244,8 +244,8 @@ Check ev_plus4''.
     [forall] where there is no dependency, i.e., no need to give a
     name to the type on the left-hand side of the arrow:
 
-           forall (x:nat), nat  
-        =  forall (_:nat), nat  
+           forall (x:nat), nat 
+        =  forall (_:nat), nat 
         =  nat -> nat
 *)
 
@@ -378,7 +378,7 @@ Definition and_comm' P Q : P /\ Q <-> Q /\ P :=
 (** **** Exercise: 2 stars, optional (conj_fact)  *)
 (** Construct a proof object demonstrating the following proposition. *)
 
-Definition conj_fact : forall P Q R, P /\ Q -> Q /\ R -> P /\ R 
+Definition conj_fact : forall P Q R, P /\ Q -> Q /\ R -> P /\ R
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 (** [] *)
 
@@ -408,7 +408,7 @@ End Or.
 (** Try to write down an explicit proof object for [or_commut] (without
     using [Print] to peek at the ones we already defined!). *)
 
-Definition or_comm : forall P Q, P \/ Q -> Q \/ P 
+Definition or_comm : forall P Q, P \/ Q -> Q \/ P
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 (** [] *)
 
@@ -447,7 +447,7 @@ Definition some_nat_is_even : exists n, ev n :=
 (** **** Exercise: 2 stars, optional (ex_ev_Sn)  *)
 (** Complete the definition of the following proof object: *)
 
-Definition ex_ev_Sn : ex (fun n => ev (S n)) 
+Definition ex_ev_Sn : ex (fun n => ev (S n))
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 (** [] *)
 

@@ -577,19 +577,19 @@ Qed.
 Module aevalR_first_try.
 
 Inductive aevalR : aexp -> nat -> Prop :=
-  | E_ANum n : 
+  | E_ANum n :
       aevalR (ANum n) n
-  | E_APlus (e1 e2: aexp) (n1 n2: nat) : 
-      aevalR e1 n1 -> 
+  | E_APlus (e1 e2: aexp) (n1 n2: nat) :
+      aevalR e1 n1 ->
       aevalR e2 n2 ->
       aevalR (APlus e1 e2) (n1 + n2)
   | E_AMinus (e1 e2: aexp) (n1 n2: nat) :
       aevalR e1 n1 ->
-      aevalR e2 n2 -> 
+      aevalR e2 n2 ->
       aevalR (AMinus e1 e2) (n1 - n2)
   | E_AMult (e1 e2: aexp) (n1 n2: nat) :
       aevalR e1 n1 ->
-      aevalR e2 n2 -> 
+      aevalR e2 n2 ->
       aevalR (AMult e1 e2) (n1 * n2).
 
 (** It will be convenient to have an infix notation for
@@ -616,13 +616,13 @@ End aevalR_first_try.
 Reserved Notation "e '\\' n" (at level 50, left associativity).
 
 Inductive aevalR : aexp -> nat -> Prop :=
-  | E_ANum n : 
+  | E_ANum n :
       (ANum n) \\ n
   | E_APlus e1 e2 n1 n2 :
       (e1 \\ n1) -> (e2 \\ n2) -> (APlus e1 e2) \\ (n1 + n2)
   | E_AMinus e1 e2 n1 n2 :
       (e1 \\ n1) -> (e2 \\ n2) -> (AMinus e1 e2) \\ (n1 - n2)
-  | E_AMult e1 e2 n1 n2 : 
+  | E_AMult e1 e2 n1 n2 :
       (e1 \\ n1) -> (e2 \\ n2) -> (AMult e1 e2) \\ (n1 * n2)
 
   where "e '\\' n" := (aevalR e n) : type_scope.
@@ -1422,7 +1422,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_XtimesYinZ_spec : option (prod nat string) := None.
+Definition manual_grade_for_XtimesYinZ_spec : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 3 stars, recommended (loop_never_stops)  *)
@@ -1481,7 +1481,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_no_whiles_terminating : option (prod nat string) := None.
+Definition manual_grade_for_no_whiles_terminating : option (nat*string) := None.
 (** [] *)
 
 (* ################################################################# *)
@@ -1529,7 +1529,7 @@ Inductive sinstr : Type :=
 | SPush (n : nat)
 | SLoad (x : string)
 | SPlus
-| SMinus 
+| SMinus
 | SMult.
 
 (** Write a function to evaluate programs in the stack language. It

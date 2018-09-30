@@ -342,7 +342,7 @@ Inductive clos_refl_trans_1n {A : Type}
                              (R : relation A) (x : A)
                              : A -> Prop :=
   | rt1n_refl : clos_refl_trans_1n R x x
-  | rt1n_trans (y z : A) 
+  | rt1n_trans (y z : A)
       (Hxy : R x y) (Hrest : clos_refl_trans_1n R y z) :
       clos_refl_trans_1n R x z.
 

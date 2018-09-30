@@ -32,7 +32,7 @@ type string =
 
 val string_dec : string -> string -> sumbool
 
-val beq_string : string -> string -> bool
+val eqb_string : string -> string -> bool
 
 type 'a total_map = string -> 'a
 

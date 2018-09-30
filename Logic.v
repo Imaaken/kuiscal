@@ -90,7 +90,7 @@ Definition injective {A B} (f : A -> B) :=
 
 Lemma succ_inj : injective S.
 Proof.
-  intros n m H. injection H as H1. apply H1. 
+  intros n m H. injection H as H1. apply H1.
 Qed.
 
 (** The equality operator [=] is also a function that returns a
@@ -430,7 +430,7 @@ Proof.
   (* WORKED IN CLASS *)
   intros P H. unfold not. intros G. apply G. apply H.  Qed.
 
-(** **** Exercise: 2 stars, advanced, recommended (double_neg_inf)  *)
+(** **** Exercise: 2 stars, advanced (double_neg_inf)  *)
 (** Write an informal proof of [double_neg]:
 
    _Theorem_: [P] implies [~~P], for any proposition [P]. *)
@@ -438,7 +438,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_double_neg_inf : option (prod nat string) := None.
+Definition manual_grade_for_double_neg_inf : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 2 stars, recommended (contrapositive)  *)
@@ -462,7 +462,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_informal_not_PNP : option (prod nat string) := None.
+Definition manual_grade_for_informal_not_PNP : option (nat*string) := None.
 (** [] *)
 
 (** Similarly, since inequality involves a negation, it requires a
@@ -1238,21 +1238,21 @@ Proof.
   (* FILL IN HERE *) Admitted.
 (** [] *)
 
-(** **** Exercise: 3 stars (beq_list)  *)
-(** Given a boolean operator [beq] for testing equality of elements of
-    some type [A], we can define a function [beq_list beq] for testing
+(** **** Exercise: 3 stars (eqb_list)  *)
+(** Given a boolean operator [eqb] for testing equality of elements of
+    some type [A], we can define a function [eqb_list] for testing
     equality of lists with elements in [A].  Complete the definition
-    of the [beq_list] function below.  To make sure that your
-    definition is correct, prove the lemma [beq_list_true_iff]. *)
+    of the [eqb_list] function below.  To make sure that your
+    definition is correct, prove the lemma [eqb_list_true_iff]. *)
 
-Fixpoint beq_list {A : Type} (beq : A -> A -> bool)
+Fixpoint eqb_list {A : Type} (eqb : A -> A -> bool)
                   (l1 l2 : list A) : bool
   (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
 
-Lemma beq_list_true_iff :
-  forall A (beq : A -> A -> bool),
-    (forall a1 a2, beq a1 a2 = true <-> a1 = a2) ->
-    forall l1 l2, beq_list beq l1 l2 = true <-> l1 = l2.
+Lemma eqb_list_true_iff :
+  forall A (eqb : A -> A -> bool),
+    (forall a1 a2, eqb a1 a2 = true <-> a1 = a2) ->
+    forall l1 l2, eqb_list eqb l1 l2 = true <-> l1 = l2.
 Proof.
 (* FILL IN HERE *) Admitted.
 (** [] *)

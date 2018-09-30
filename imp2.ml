@@ -107,9 +107,9 @@ let rec string_dec s x =
         | Left -> string_dec s0 s1
         | Right -> Right))
 
-(** val beq_string : string -> string -> bool **)
+(** val eqb_string : string -> string -> bool **)
 
-let beq_string x y =
+let eqb_string x y =
   match string_dec x y with
   | Left -> true
   | Right -> false
@@ -119,7 +119,7 @@ type 'a total_map = string -> 'a
 (** val t_update : 'a1 total_map -> string -> 'a1 -> string -> 'a1 **)
 
 let t_update m x v x' =
-  if beq_string x x' then v else m x'
+  if eqb_string x x' then v else m x'
 
 type state = int total_map
 

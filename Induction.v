@@ -70,10 +70,10 @@ From LF Require Export Basics.
         [Compiled library Foo makes inconsistent assumptions over
         library Bar]
 
-    - Check whether you have multiple installations of Coq on your machine.
-      It may be that commands (like [coqc]) that you execute in a terminal
-      window are getting a different version of Coq than commands executed by
-      Proof General or CoqIDE.
+    check whether you have multiple installations of Coq on your machine.
+    It may be that commands (like [coqc]) that you execute in a terminal
+    window are getting a different version of Coq than commands executed by
+    Proof General or CoqIDE.
 
     - Another common reason is that the library [Bar] was modified and
       recompiled without also recompiling [Foo] which depends on it.  Recompile
@@ -204,7 +204,6 @@ Theorem plus_n_Sm : forall n m : nat,
 Proof.
   (* FILL IN HERE *) Admitted.
 
-
 Theorem plus_comm : forall n m : nat,
   n + m = m + n.
 Proof.
@@ -254,7 +253,7 @@ Proof.
 *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_destruct_induction : option (prod nat string) := None.
+Definition manual_grade_for_destruct_induction : option (nat*string) := None.
 (** [] *)
 
 (* ################################################################# *)
@@ -456,7 +455,7 @@ Proof.
 *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_plus_comm_informal : option (prod nat string) := None.
+Definition manual_grade_for_plus_comm_informal : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (eqb_refl_informal)  *)
@@ -610,7 +609,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_binary_commute : option (prod nat string) := None.
+Definition manual_grade_for_binary_commute : option (nat*string) := None.
 (** [] *)
 
 (** **** Exercise: 5 stars, advanced (binary_inverse)  *)
@@ -635,7 +634,7 @@ Proof.
   (* FILL IN HERE *) Admitted.
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_binary_inverse_a : option (prod nat string) := None.
+Definition manual_grade_for_binary_inverse_a : option (nat*string) := None.
 
 (** (b) One might naturally expect that we should also prove the
         opposite direction -- that starting with a binary number,
@@ -646,7 +645,7 @@ Definition manual_grade_for_binary_inverse_a : option (prod nat string) := None.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_binary_inverse_b : option (prod nat string) := None.
+Definition manual_grade_for_binary_inverse_b : option (nat*string) := None.
 
 (** (c) Define a normalization function -- i.e., a function
         [normalize] going directly from [bin] to [bin] (i.e., _not_ by
@@ -657,12 +656,17 @@ Definition manual_grade_for_binary_inverse_b : option (prod nat string) := None.
         One good way to find out what you need is to start by trying
         to prove the main statement, see where you get stuck, and see
         if you can find a lemma -- perhaps requiring its own inductive
-        proof -- that will allow the main proof to make progress.) *)
+        proof -- that will allow the main proof to make progress.) Don't
+        define thi using nat_to_bin and bin_to_nat! *)
 
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_binary_inverse_c : option (prod nat string) := None.
+Definition manual_grade_for_binary_inverse_c : option (nat*string) := None.
 (** [] *)
 
 
+(* NEW NAME *)
+Notation zero_neqb_S := zero_nbeq_S (only parsing).
+Notation S_neqb_0 := S_nbeq_0 (only parsing).
+Notation plus_leb_compat_l := plus_ble_compat_l (only parsing).

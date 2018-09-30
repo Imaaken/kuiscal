@@ -240,7 +240,7 @@ Proof.
   induction i as [| i' ].
 
   - (* i = 0 -- contradictory *)
-    intros c st st' H. discriminate H. 
+    intros c st st' H. discriminate H.
 
   - (* i = S i' *)
     intros c st st' H.
@@ -292,7 +292,7 @@ Proof.
 (* FILL IN HERE *)
 
 (* Do not modify the following line: *)
-Definition manual_grade_for_ceval_step__ceval_inf : option (prod nat string) := None.
+Definition manual_grade_for_ceval_step__ceval_inf : option (nat*string) := None.
 (** [] *)
 
 Theorem ceval_step_more: forall i1 i2 st st' c,

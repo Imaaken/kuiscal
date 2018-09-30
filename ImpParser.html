@@ -68,7 +68,7 @@
 </div>
 
 <div class="doc">
-<a name="lab363"></a><h1 class="section">Internals</h1>
+<a name="lab367"></a><h1 class="section">Internals</h1>
 
 </div>
 <div class="code code-space">
@@ -77,7 +77,7 @@
 </div>
 
 <div class="doc">
-<a name="lab364"></a><h2 class="section">Lexical Analysis</h2>
+<a name="lab368"></a><h2 class="section">Lexical Analysis</h2>
 
 </div>
 <div class="code code-space">
@@ -156,11 +156,11 @@
 </div>
 
 <div class="doc">
-<a name="lab365"></a><h2 class="section">Parsing</h2>
+<a name="lab369"></a><h2 class="section">Parsing</h2>
 
 <div class="paragraph"> </div>
 
-<a name="lab366"></a><h3 class="section">Options With Errors</h3>
+<a name="lab370"></a><h3 class="section">Options With Errors</h3>
 
 <div class="paragraph"> </div>
 
@@ -196,7 +196,7 @@ Some syntactic sugar to make writing nested match-expressions on
 </div>
 
 <div class="doc">
-<a name="lab367"></a><h3 class="section">Generic Combinators for Building Parsers</h3>
+<a name="lab371"></a><h3 class="section">Generic Combinators for Building Parsers</h3>
 
 </div>
 <div class="code code-space">
@@ -252,7 +252,7 @@ A parser that expects a particular token:
 </div>
 
 <div class="doc">
-<a name="lab368"></a><h3 class="section">A Recursive-Descent Parser for Imp</h3>
+<a name="lab372"></a><h3 class="section">A Recursive-Descent Parser for Imp</h3>
 
 <div class="paragraph"> </div>
 
@@ -300,7 +300,7 @@ Parse arithmetic expressions
 </div>
 <div class="code code-tight">
 
-<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parsePrimaryExp</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>) <br/>
+<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parsePrimaryExp</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="id" type="var">optionE</span> (<span class="id" type="var">aexp</span> * <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">steps</span> <span class="id" type="keyword">with</span><br/>
@@ -371,27 +371,27 @@ Parsing boolean expressions:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">BTrue</span>,<span class="id" type="var">rest</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">u</span>,<span class="id" type="var">rest</span>) &lt;-- <span class="id" type="var">expect</span> "false" <span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">BFalse</span>,<span class="id" type="var">rest</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;-- <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "!" <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseAtomicExp</span> <span class="id" type="var">steps'</span>) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;--<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "!"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseAtomicExp</span> <span class="id" type="var">steps'</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">BNot</span> <span class="id" type="var">e</span>, <span class="id" type="var">rest</span>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;-- <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "(" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;--<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "("<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseConjunctionExp</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">xs</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">DO</span> (<span class="id" type="var">u</span>,<span class="id" type="var">rest'</span>) &lt;== <span class="id" type="var">expect</span> ")" <span class="id" type="var">rest</span>; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">DO</span> (<span class="id" type="var">u</span>,<span class="id" type="var">rest'</span>) &lt;== <span class="id" type="var">expect</span> ")" <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">e</span>, <span class="id" type="var">rest'</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>, <span class="id" type="var">rest</span>) &lt;== <span class="id" type="var">parseProductExp</span> <span class="id" type="var">steps'</span> <span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">DO</span> (<span class="id" type="var">e'</span>, <span class="id" type="var">rest'</span>) &lt;--<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "=" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "="<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseAExp</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">BEq</span> <span class="id" type="var">e</span> <span class="id" type="var">e'</span>, <span class="id" type="var">rest'</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e'</span>, <span class="id" type="var">rest'</span>) &lt;--<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "≤" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "≤"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseAExp</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<span class="id" type="var">BLe</span> <span class="id" type="var">e</span> <span class="id" type="var">e'</span>, <span class="id" type="var">rest'</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">NoneE</span> <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">NoneE</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Expected '=' or '≤' after arithmetic expression")<br/>
 <span class="id" type="keyword">end</span><br/>
 <br/>
@@ -411,18 +411,18 @@ Parsing boolean expressions:
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">parseBExp</span> := <span class="id" type="var">parseConjunctionExp</span>.<br/><hr class='doublespaceincode'/>
 <span class="id" type="keyword">Check</span> <span class="id" type="var">parseConjunctionExp</span>.<br/><hr class='doublespaceincode'/>
 <span class="id" type="keyword">Definition</span> <span class="id" type="var">testParsing</span> {<span class="id" type="var">X</span> : <span class="id" type="keyword">Type</span>}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">p</span> : <span class="id" type="var">nat</span> → <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">p</span> : <span class="id" type="var">nat</span> →<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">list</span> <span class="id" type="var">token</span> →<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">optionE</span> (<span class="id" type="var">X</span> * <span class="id" type="var">list</span> <span class="id" type="var">token</span>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">s</span> : <span class="id" type="var">string</span>) :=<br/>
-&nbsp;&nbsp;<span class="id" type="keyword">let</span> <span class="id" type="var">t</span> := <span class="id" type="var">tokenize</span> <span class="id" type="var">s</span> <span class="id" type="keyword">in</span> <br/>
+&nbsp;&nbsp;<span class="id" type="keyword">let</span> <span class="id" type="var">t</span> := <span class="id" type="var">tokenize</span> <span class="id" type="var">s</span> <span class="id" type="keyword">in</span><br/>
 &nbsp;&nbsp;<span class="id" type="var">p</span> 100 <span class="id" type="var">t</span>.<br/><hr class='doublespaceincode'/>
 <span class="comment">(*<br/>
-Eval&nbsp;compute&nbsp;in&nbsp;<br/>
+Eval&nbsp;compute&nbsp;in<br/>
 &nbsp;&nbsp;testParsing&nbsp;parseProductExp&nbsp;"x*y*(x*x)*x".<br/>
 <br/>
-Eval&nbsp;compute&nbsp;in&nbsp;<br/>
-&nbsp;&nbsp;testParsing&nbsp;parseConjunctionExp&nbsp;"not((x=x||x*x&lt;=(x*x)*x)&amp;&amp;x=x".&nbsp;<br/>
+Eval&nbsp;compute&nbsp;in<br/>
+&nbsp;&nbsp;testParsing&nbsp;parseConjunctionExp&nbsp;"not((x=x||x*x&lt;=(x*x)*x)&amp;&amp;x=x".<br/>
 *)</span><br/>
 </div>
 
@@ -431,7 +431,7 @@ Parsing commands:
 </div>
 <div class="code code-tight">
 
-<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parseSimpleCommand</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>) <br/>
+<span class="id" type="keyword">Fixpoint</span> <span class="id" type="var">parseSimpleCommand</span> (<span class="id" type="var">steps</span>:<span class="id" type="var">nat</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">xs</span> : <span class="id" type="var">list</span> <span class="id" type="var">token</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">steps</span> <span class="id" type="keyword">with</span><br/>
 &nbsp;&nbsp;| 0 ⇒ <span class="id" type="var">NoneE</span> "Too many recursive calls"<br/>
@@ -441,19 +441,19 @@ Parsing commands:
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;--<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "IFB" (<span class="id" type="var">parseBExp</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">c</span>,<span class="id" type="var">rest'</span>)  &lt;==<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "THEN" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "THEN"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseSequencedCommand</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">c'</span>,<span class="id" type="var">rest''</span>) &lt;==<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "ELSE" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "ELSE"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseSequencedCommand</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest'</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">u</span>,<span class="id" type="var">rest'''</span>) &lt;==<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">expect</span> "END" <span class="id" type="var">rest''</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span>(<span class="id" type="var">IFB</span> <span class="id" type="var">e</span> <span class="id" type="var">THEN</span> <span class="id" type="var">c</span> <span class="id" type="var">ELSE</span> <span class="id" type="var">c'</span> <span class="id" type="var">FI</span>, <span class="id" type="var">rest'''</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span> <span class="id" type="var">DO</span> (<span class="id" type="var">e</span>,<span class="id" type="var">rest</span>) &lt;--<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "WHILE" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "WHILE"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseBExp</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">c</span>,<span class="id" type="var">rest'</span>) &lt;==<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "DO" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> "DO"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseSequencedCommand</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">u</span>,<span class="id" type="var">rest''</span>) &lt;==<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">expect</span> "END" <span class="id" type="var">rest'</span>;<br/>
@@ -473,7 +473,7 @@ Parsing commands:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">c</span>, <span class="id" type="var">rest</span>) &lt;==<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">parseSimpleCommand</span> <span class="id" type="var">steps'</span> <span class="id" type="var">xs</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">DO</span> (<span class="id" type="var">c'</span>, <span class="id" type="var">rest'</span>) &lt;--<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> ";;" <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">firstExpect</span> ";;"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">parseSequencedCommand</span> <span class="id" type="var">steps'</span>) <span class="id" type="var">rest</span>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">SomeE</span>(<span class="id" type="var">c</span> ;; <span class="id" type="var">c'</span>, <span class="id" type="var">rest'</span>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">OR</span><br/>
@@ -486,7 +486,7 @@ Parsing commands:
 </div>
 
 <div class="doc">
-<a name="lab369"></a><h1 class="section">Examples</h1>
+<a name="lab373"></a><h1 class="section">Examples</h1>
 
 </div>
 <div class="code code-space">
@@ -499,7 +499,7 @@ Parsing commands:
 &nbsp;&nbsp;ELSE<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SKIP<br/>
 &nbsp;&nbsp;END  "<br/>
-= <br/>
+=<br/>
 &nbsp;&nbsp;<span class="id" type="var">SomeE</span> (<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">IFB</span> "x" = "y" + 1 + 2 - "y" * 6 + 3 <span class="id" type="var">THEN</span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"x" <span style='font-size:85%;'><span style='vertical-align:5%;'><span style='letter-spacing:-.2em;'>:</span>:</span>=</span> "x" * 1;;<br/>
